@@ -1,0 +1,635 @@
+/* =========================================================
+   1. GLOBAL STYLES & VARIABLES
+========================================================= */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables rediseñadas */
+:root {
+    --primary-color: #ff3b3b;
+    --primary-hover: #e02f2f;
+    --bg-main: #f0f3f8; /* Un gris/azul muy sutil que da profundidad */
+    --dark-color: #1a1d24; /* Un oscuro más premium para la sección de logs */
+    --white-color: #ffffff;
+    --gray-text: #64748b; /* Gris tipo Tailwind para textos secundarios */
+    --border-color: #e2e8f0;
+    --success-color: #10b981; /* Verde más moderno */
+    
+    /* Sombras más suaves y realistas (Soft Shadows) */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.03);
+
+    --radius: 16px; /* Ajustado para un look más balanceado */
+}
+
+/* Body moderno con fuentes del sistema de alta calidad */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-main);
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Botones universales */
+button {
+    border: none;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Imágenes */
+img {
+    width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   2. HEADER / NAVBAR
+========================================================= */
+
+.main-header,
+.report-header,
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 40px;
+    background-color: var(--white-color);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border-color);
+    position: relative; /* Permite el centrado absoluto del nav respecto al header */
+}
+
+.logo-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--primary-color);
+}
+
+/* Centrado perfecto de la barra de navegación en todas las pantallas */
+.navbar,
+.report-nav,
+.details-nav {
+    display: flex;
+    gap: 28px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar a,
+.report-nav a,
+.details-nav a {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-text);
+    padding: 6px 2px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar a:hover,
+.report-nav a:hover,
+.details-nav a:hover {
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.user-section .username {
+    font-weight: 600;
+    background-color: #f1f5f9;
+    padding: 8px 16px;
+    border-radius: 99px;
+    color: #334155;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   3. LOGIN PAGE
+========================================================= */
+
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-main); /* Mismo fondo limpio de la app */
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--white-color);
+    padding: 45px 35px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.login-title {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: var(--gray-text);
+    line-height: 1.4;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--white-color);
+    box-shadow: 0 0 0 4px rgba(255, 59, 59, 0.1);
+}
+
+.login-button {
+    margin-top: 8px;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 59, 59, 0.15);
+}
+
+.login-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255, 59, 59, 0.25);
+}
+
+
+/* =========================================================
+   4. HERO SECTION
+========================================================= */
+
+.hero-section {
+    padding: 60px 20px 40px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+
+.hero-content p {
+    font-size: 16px;
+    color: var(--gray-text);
+    margin-bottom: 28px;
+}
+
+.generate-button {
+    padding: 14px 32px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 4px 14px rgba(255, 59, 59, 0.25);
+}
+
+.generate-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 59, 59, 0.35);
+}
+
+
+/* =========================================================
+   5. SCORE SECTION
+========================================================= */
+
+.score-section {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 10px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.score-card {
+    flex: 1;
+    background-color: white;
+    padding: 24px;
+    text-align: center;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.score-card h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gray-text);
+    margin-bottom: 8px;
+}
+
+.score-card p {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   6. POKEMON CARDS
+========================================================= */
+
+.pokemon-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pokemon-card {
+    background-color: var(--white-color);
+    border-radius: var(--radius);
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pokemon-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(255, 59, 59, 0.2);
+}
+
+.pokemon-image {
+    background: radial-gradient(circle, #f8fafc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.pokemon-image img {
+    width: 130px;
+    margin: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+}
+
+.pokemon-name {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.pokemon-types {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.type {
+    padding: 5px 14px;
+    border-radius: 99px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.electric { background-color: #fbc02d; color: #1e293b; }
+.fire     { background-color: #f97316; }
+.water    { background-color: #3b82f6; }
+.grass    { background-color: #22c55e; }
+
+.pokemon-weight {
+    font-size: 14px;
+    color: var(--gray-text);
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.pokemon-hp {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+}
+
+.pokemon-hp p {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    text-align: left;
+}
+
+.hp-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 99px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+
+.hp-fill {
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 99px;
+}
+
+
+/* =========================================================
+   7. REPORT PAGE
+========================================================= */
+
+.filter-section {
+    display: flex;
+    gap: 12px;
+    padding: 30px 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filter-section button {
+    padding: 10px 20px;
+    background-color: var(--white-color);
+    color: #475569;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.filter-section button:hover {
+    background-color: #f8fafc;
+    color: #0f172a;
+    border-color: #cbd5e1;
+}
+
+.filter-section button:first-child {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.stats-section {
+    display: flex;
+    gap: 24px;
+    padding: 0 40px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stats-card {
+    flex: 1;
+    background-color: white;
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.stats-card h3 {
+    font-size: 13px;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.stats-card p {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.search-section {
+    padding: 0 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-section input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-color);
+    font-family: inherit;
+    font-size: 15px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.search-section input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 59, 59, 0.15);
+}
+
+.table-section {
+    padding: 0 40px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.table-section table {
+    width: 100%;
+    background-color: white;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.table-section th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table-section td {
+    font-size: 15px;
+    color: #334155;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-section th,
+.table-section td {
+    padding: 18px 24px;
+    text-align: left;
+}
+
+.table-section tr:last-child td {
+    border-bottom: none;
+}
+
+.table-section tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+
+/* =========================================================
+   8. LOGS PAGE
+========================================================= */
+
+.logs-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.log-card {
+    width: 100%;
+    max-width: 750px;
+    background-color: var(--dark-color);
+    color: #e2e8f0;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid #2d3139;
+}
+
+.log-item {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #2d3139;
+}
+
+.log-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.log-item h3 {
+    color: #fca5a5;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.log-item p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   9. RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+    .main-header,
+    .report-header,
+    .details-header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Resetea la posición absoluta en móviles para un flujo correcto */
+    .navbar,
+    .report-nav,
+    .details-nav {
+        position: static;
+        transform: none;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .score-section,
+    .stats-section {
+        flex-direction: column;
+        gap: 16px;
+        padding: 10px 20px;
+    }
+
+    .filter-section {
+        padding: 20px 20px 10px;
+        flex-wrap: wrap;
+    }
+
+    .search-section,
+    .table-section {
+        padding: 10px 20px 20px;
+    }
+
+    .pokemon-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+}
