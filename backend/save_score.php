@@ -1,10 +1,16 @@
 <?php
-
 session_start();
 require_once 'conection.php';
 
-$usuario_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 1;
-$username = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Natalia';
+// Si no existe sesión activa, redirigir o cortar la ejecución (Seguridad básica)
+if (!isset($_SESSION['usuario_id'])) {
+    header('Content-Type: application/json');
+    echo json_encode(["status" => "error", "message" => "Sesión no activa"]);
+    exit();
+}
+
+$usuario_id = $_SESSION['usuario_id'];
+$username = $_SESSION['usuario']; // Aquí llegará "simon" de manera 100% real
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $score = isset($_POST['score']) ? intval($_POST['score']) : 0;

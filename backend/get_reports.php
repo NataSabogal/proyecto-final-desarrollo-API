@@ -2,8 +2,15 @@
 session_start();
 require_once 'conection.php';
 
-$usuario_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 1;
-$username = isset($_SESSION['usuario']) ? $_SESSION['usuario'] : 'Natalia';
+// Validar sesión estricta
+if (!isset($_SESSION['usuario_id'])) {
+    header('Content-Type: application/json');
+    echo json_encode(["status" => "error", "message" => "Acceso denegado. Inicie sesión."]);
+    exit();
+}
+
+$usuario_id = $_SESSION['usuario_id'];
+$username = $_SESSION['usuario']; // Captura dinámica garantizada
 
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 
@@ -39,7 +46,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 $promedio = $total_partidas > 0 ? round($total_score / $total_partidas, 1) : 0;
 
 $route = "/backend/get_reports.php?filter=" . $filter;
-$desc = "Consulta de reportes interactivos realizada con el filtro: " . $filter;
+$desc = "Consulta de reportes interactivos realizada por el usuario: " . $username . " con el filtro: " . $filter;
 $log_query = "INSERT INTO logs (event_type, route_accessed, description) VALUES ('Report Accessed', '$route', '$desc')";
 mysqli_query($conexion, $log_query);
 
